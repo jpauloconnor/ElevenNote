@@ -12,39 +12,56 @@ class Note: PFObject, PFSubclassing {
     class func parseClassName() -> String {
         return "Note"
     }
-    var fromUser : parseClassName
-    var title = ""
-    var text = ""
-    var date = NSDate()
-    
-    var dateString : String {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        return dateFormatter.stringFromDate(date)
+    var title : NoteUser {
+        get {
+            return objectForKey("title") as! NoteUser
+        }
+    set {
+            setObject(newValue, forKey: "title")
+        }
     }
-    
-    override init(){   //Why is this initializer here?
-        super.init()
+    var text : NoteUser {
+        get {
+            return objectForKey("text") as! NoteUser
+        }
+        set {
+            setObject(newValue, forKey: "text")
+        }
     }
-    
-    init(title:String, text:String) {
-        self.title = title
-        self.text = text
-    }
-
-    required init(coder aDecoder: NSCoder){
-        self.title = aDecoder.decodeObjectForKey("title") as! String
-        self.text = aDecoder.decodeObjectForKey("text") as! String
-        self.date = aDecoder.decodeObjectForKey("date") as! NSDate
-        
-    }
-
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(title, forKey: "title")
-        aCoder.encodeObject(text, forKey: "text")
-        aCoder.encodeObject(date, forKey: "date")
-        
-    }
-    
 }
+
+    
+        
+
+//    
+//    var dateString : String {
+//        let dateFormatter = NSDateFormatter()
+//        dateFormatter.dateFormat = "MM/dd/yyyy"
+//        return dateFormatter.stringFromDate(date)
+//    }
+//    
+//    override init(){   //Why is this initializer here?
+//        super.init()
+//    }
+//    
+//    init(title:String, text:String) {
+//        self.title = title
+//        self.text = text
+//    }
+//
+//    required init(coder aDecoder: NSCoder){
+//        self.title = aDecoder.decodeObjectForKey("title") as! String
+//        self.text = aDecoder.decodeObjectForKey("text") as! String
+//        self.date = aDecoder.decodeObjectForKey("date") as! NSDate
+//        
+//    }
+//
+//    func encodeWithCoder(aCoder: NSCoder) {
+//        aCoder.encodeObject(title, forKey: "title")
+//        aCoder.encodeObject(text, forKey: "text")
+//        aCoder.encodeObject(date, forKey: "date")
+//        
+//    }
+//    
+//}
 

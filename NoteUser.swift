@@ -9,12 +9,20 @@
 import UIKit
 
 class NoteUser: PFUser, PFSubclassing {
-    var storedNotes : String {
+    var storedTitles : String {
     get {
-        return objectForKey("storedNotes") as! String
+        return objectForKey("title") as! String
     }
     set {
-        setObject(newValue, forKey: "storedNotes")
+        setObject(newValue, forKey: "title")
+        }
+    }
+    var storedTexts : String {
+        get {
+            return objectForKey("text") as! String
+        }
+        set {
+            setObject(newValue, forKey: "text")
         }
     }
 }
