@@ -130,7 +130,7 @@ PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("notesCell", forIndexPath: indexPath) as! NoteTableViewCell
         
-        cell.setupCell(NoteStore.sharedInstance.getNote(indexPath.row))
+        cell.setupCell(NoteUser.sharedInstance.getNote(indexPath.row))
         
         var object: PFObject = self.noteObjects.objectAtIndex(indexPath.row) as! PFObject
         cell.noteTitle?.text = object["title"] as? String
@@ -170,7 +170,7 @@ PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            NoteStore.sharedInstance.deleteNote(indexPath.row)
+            NoteUser.sharedInstance.deleteNote(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             
@@ -228,7 +228,7 @@ PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate {
         
         if let indexPath = tableView.indexPathForSelectedRow() {
             //            NoteStore.sharedInstance.updateNote(noteDetailVC.note, index: indexPath.row)
-            NoteStore.sharedInstance.sort()
+            NoteUser.sharedInstance.sort()
             
             var indexPaths = [NSIndexPath]()
             for index in 0...indexPath.row {
@@ -237,7 +237,7 @@ PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate {
             
             tableView.reloadRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.Automatic)
         } else {
-            NoteStore.sharedInstance.addNote(noteDetailVC.note)
+            NoteUser.sharedInstance.addNote(noteDetailVC.note)
             tableView.reloadData()
         }
         
